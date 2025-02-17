@@ -1,0 +1,973 @@
+{
+	"info": {
+		"_postman_id": "7219356f-417d-4cc2-8d0b-5a5454a6fb52",
+		"name": "Evently",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6368589"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"test12345@test.com\",\r\n  \"password\": \"123456\",\r\n  \"firstName\": \"First\",\r\n  \"lastName\": \"Last\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/users/register",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users/profile",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Milan M\",\r\n  \"lastName\": \"Jovanovic\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/users/profile",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Identity",
+			"item": [
+				{
+					"name": "Access Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "evently-public-client",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "email openid",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "milan@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:18080/realms/evently/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "18080",
+							"path": [
+								"realms",
+								"evently",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "evently-public-client",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyN2Y1NTIyYi1kMDNmLTRjNzEtYWU4OC0zNTYyZGRiODQxZjEifQ.eyJleHAiOjE3MTMxMDEwMzMsImlhdCI6MTcxMzA5OTIzMywianRpIjoiNDEyMmFkNDEtOGJkMS00MDVjLWJiZWQtZjM2YTE4ZDgwZTg5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxODA4MC9yZWFsbXMvZXZlbnRseSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTgwODAvcmVhbG1zL2V2ZW50bHkiLCJzdWIiOiJkZjVkYTg3ZC0wOWIzLTRlYzgtYTYxYS1jNDFlNGE4ZjFjYTYiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoiZXZlbnRseS1wdWJsaWMtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6IjM1ZGJlYTU2LTRjYzgtNGIxYy1iMjkyLTBmYzZjZjFkODc1NyIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiIzNWRiZWE1Ni00Y2M4LTRiMWMtYjI5Mi0wZmM2Y2YxZDg3NTcifQ.YKpBdCwH9co-8gEYQ2v0tQ-IejiwoEZO4VaBTHUzg4R4bfk4cI3_-IQd_-14d85llBMsN4bvLn0Yqn3cVMRQMQ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:18080/realms/evently/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "18080",
+							"path": [
+								"realms",
+								"evently",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Access Token Confidential",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "evently-confidential-client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "PzotcrvZRF9BHCKcUxdKfHWlIPECG49k",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:18080/realms/evently/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "18080",
+							"path": [
+								"realms",
+								"evently",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:18080/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "18080",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/categories",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/categories/9fbf8096-c30f-4652-8643-909ee19b3544",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"categories",
+								"9fbf8096-c30f-4652-8643-909ee19b3544"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Rock\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/categories",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Rock music V2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/categories/b7b53ce0-6a1a-4e2d-a44b-1532a41ec85b",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"categories",
+								"b7b53ce0-6a1a-4e2d-a44b-1532a41ec85b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Rock music V2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/categories/b7b53ce0-6a1a-4e2d-a44b-1532a41ec85b/archive",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"categories",
+								"b7b53ce0-6a1a-4e2d-a44b-1532a41ec85b",
+								"archive"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carts",
+			"item": [
+				{
+					"name": "Get Cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/carts",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to Cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticketTypeId\": \"26dfc5a1-9294-407c-a7af-5dbee8ae5bc0\",\r\n    \"quantity\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/carts/add",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"carts",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove from Cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticketTypeId\": \"26dfc5a1-9294-407c-a7af-5dbee8ae5bc0\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}/carts/remove",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"carts",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticketTypeId\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/carts",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Create event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"categoryId\": \"e7db688f-392a-4d54-9643-cf44549061d8\",\r\n  \"title\": \"Concert\",\r\n  \"description\": \"description\",\r\n  \"location\": \"location\",\r\n  \"startsAtUtc\": \"2024-04-30T19:00:47.827Z\",\r\n  \"endsAtUtc\": \"2024-04-30T23:00:47.827Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/events",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events/search?page=1&pageSize=1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								"search"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-04-30",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "NULL",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events/f6ea8909-c414-4c81-933e-6f0f4fba556f",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								"f6ea8909-c414-4c81-933e-6f0f4fba556f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Publish event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events/04da8a9b-430e-456b-be62-382d7a795880/publish",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								"04da8a9b-430e-456b-be62-382d7a795880",
+								"publish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reschedule event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startsAtUtc\": \"2024-04-30T19:00:47.827Z\",\r\n    \"endsAtUtc\": \"2024-05-21T23:00:47.827Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/events/f6ea8909-c414-4c81-933e-6f0f4fba556f/reschedule",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								"f6ea8909-c414-4c81-933e-6f0f4fba556f",
+								"reschedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events/7aab24c1-e40d-4b1e-ab31-e964f63a7af0/cancel",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								"7aab24c1-e40d-4b1e-ab31-e964f63a7af0",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event statistics",
+			"item": [
+				{
+					"name": "Get event statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/event-statistics/60e4d022-9420-4be6-8f20-bf98063b80ac",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"event-statistics",
+								"60e4d022-9420-4be6-8f20-bf98063b80ac"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/orders",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/orders/458fe30b-fdbc-4acd-94cf-c1ce7f2c480a",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"orders",
+								"458fe30b-fdbc-4acd-94cf-c1ce7f2c480a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/orders",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ticket Types",
+			"item": [
+				{
+					"name": "Get ticket types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/ticket-types?eventId=60e4d022-9420-4be6-8f20-bf98063b80ac",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"ticket-types"
+							],
+							"query": [
+								{
+									"key": "eventId",
+									"value": "60e4d022-9420-4be6-8f20-bf98063b80ac"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ticket type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/ticket-types/f6ea8909-c414-4c81-933e-6f0f4fba556f",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"ticket-types",
+								"f6ea8909-c414-4c81-933e-6f0f4fba556f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create ticket type",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"eventId\": \"715f139e-7b10-4b3f-bb29-8b5a8a4e635e\",\r\n  \"name\": \"VIP\",\r\n  \"price\": 2000,\r\n  \"currency\": \"USD\",\r\n  \"quantity\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/ticket-types",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"ticket-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 2000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/ticket-types/60e4d022-9420-4be6-8f20-bf98063b80ac/price",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"ticket-types",
+								"60e4d022-9420-4be6-8f20-bf98063b80ac",
+								"price"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tickets",
+			"item": [
+				{
+					"name": "Get ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/tickets/389d0d33-c8b7-4359-9cfc-63176b97f153",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"tickets",
+								"389d0d33-c8b7-4359-9cfc-63176b97f153"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ticket by code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/tickets/code/tc_01HTKYGGX3EW1EP2DXQMDY5ZPN",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"tickets",
+								"code",
+								"tc_01HTKYGGX3EW1EP2DXQMDY5ZPN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get tickets for order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/tickets/order/0d657321-0cb5-4535-900f-51c47cf15aa2",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"tickets",
+								"order",
+								"0d657321-0cb5-4535-900f-51c47cf15aa2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attendees",
+			"item": [
+				{
+					"name": "Check in attendee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticketId\": \"41232baa-adde-4581-a06d-fc00986959ec\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/attendees/check-in",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"attendees",
+								"check-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/health",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
